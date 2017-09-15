@@ -1,5 +1,5 @@
 # PRTG-iDirect-sensor
-##Custom iDirect XML Sensor for PRTG
+## Custom iDirect XML Sensor for PRTG
 
 1. Please the iDirect.ps1 file in the Custom Sensors\EXEXML\ folder and put the *.ovl in lookups\custom\
 
