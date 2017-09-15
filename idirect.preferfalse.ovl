@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+  <ValueLookup id="idirect.preferfalse" desiredValue="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PaeValueLookup.xsd">
+    <Lookups>
+      <SingleInt state="Error" value="1">
+        True
+      </SingleInt>
+      <SingleInt state="Ok" value="0">
+        False
+      </SingleInt>
+    </Lookups>
+  </ValueLookup>
