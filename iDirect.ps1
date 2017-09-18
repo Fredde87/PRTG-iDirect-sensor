@@ -40,6 +40,9 @@ Function Get-Telnet
         {   $Read = $Stream.Read($Buffer, 0, 1024) 
             $Result += ($Encoding.GetString($Buffer, 0, $Read))
         }
+        $Writer.Close()
+        $Stream.Close()
+
         Return $Result
     }
     Else     
@@ -62,9 +65,9 @@ $BeamName = [regex]::Match($Process, "$($BeamNum)\s+=\s+(.+)").Groups[1].Value -
 
 $TxStateString = [regex]::Match($Process, 'TX State\s+:\s+(.+)').Groups[1].Value -replace "`n|`r"
 
-If($TxStateString -clike 'ON') {
+If($TxStateString -eq 'ON') {
     $TxState = 1
-} elseif ($TxStateString -clike 'Warning') {
+} elseif ($TxStateString -eq 'Warning') {
     $TxState = 2
 } else {
     $TxState = 0
@@ -82,7 +85,7 @@ If($DemodStatusString -eq "Locked") {
 
 $NCRStatusString = [regex]::Match($Process, 'NCR Status\s+:\s+(.+)').Groups[1].Value -replace "`n|`r"
 
-If($NCRStatusString -clike 'Locked') {
+If($NCRStatusString -eq 'Locked') {
     $NCRStatus = 1
 } else {
     $NCRStatus = 0
@@ -90,7 +93,7 @@ If($NCRStatusString -clike 'Locked') {
 
 $TxMuteString = [regex]::Match($Process, 'Tx Mute\s+:\s+(.+)').Groups[1].Value -replace "`n|`r"
 
-If($TxMuteString -clike 'False') {
+If($TxMuteString -eq 'False') {
     $TxMute = 0
 } else {
     $TxMute = 1
@@ -98,7 +101,7 @@ If($TxMuteString -clike 'False') {
 
 $NetworkKeyString = [regex]::Match($Process, 'Network Key\s+:\s+(.+)').Groups[1].Value -replace "`n|`r"
 
-If($NetworkKeyString -clike 'Valid') {
+If($NetworkKeyString -eq 'Valid') {
     $NetworkKey = 1
 } else {
     $NetworkKey = 0
@@ -107,7 +110,7 @@ If($NetworkKeyString -clike 'Valid') {
 
 $TxCarrierInfoString = [regex]::Match($Process, 'Tx Carrier Info\s+:\s+(.+)').Groups[1].Value -replace "`n|`r"
 
-If($TxCarrierInfoString -clike 'Valid') {
+If($TxCarrierInfoString -eq 'Valid') {
     $TxCarrierInfo = 1
 } else {
     $TxCarrierInfo = 0
@@ -116,7 +119,7 @@ If($TxCarrierInfoString -clike 'Valid') {
 
 $TxAuthString = [regex]::Match($Process, 'Tx Authorization\s+:\s+(.+)').Groups[1].Value -replace "`n|`r"
 
-If($TxAuthString -clike 'Valid') {
+If($TxAuthString -eq 'Valid') {
     $TxAuth = 1
 } else {
     $TxAuth = 0
@@ -124,7 +127,7 @@ If($TxAuthString -clike 'Valid') {
 
 $OperatingModeString = [regex]::Match($Process, 'Operating Mode Mismatch\s+:\s+(.+)').Groups[1].Value -replace "`n|`r"
 
-If($OperatingModeString -clike 'True') {
+If($OperatingModeString -eq 'True') {
     $OperatingMode = 1
 } else {
     $OperatingMode = 0
