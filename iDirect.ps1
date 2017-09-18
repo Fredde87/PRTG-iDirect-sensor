@@ -12,7 +12,7 @@ Function Get-Telnet
 {   Param (
         [String[]]$Commands = @(""),
         [string]$Port = "23",
-        [int]$WaitTime = 1000
+        [int]$WaitTime = 500
     )
     #Attach to the remote device, setup streaming requirements
     $Socket = New-Object System.Net.Sockets.TcpClient($RemoteHost, $Port)
